@@ -9,7 +9,7 @@ print("------------------")
 
 ins = input("Enter the desired operator: ")
 
-if ins=="sin" or ins=="cos" or ins=="tan" or ins=="cot" or ins=="factorial" or ins=="sqrt" or ins=="log" or ins=="x^2":
+if ins=="sin" or ins =="cos" or ins =="tan" or ins =="cot" or ins =="factorial" or ins =="sqrt" or ins =="log" or ins =="x^2":
     A = int(input("Enter the desired number: "))
 
 elif ins=="+" or ins=="-" or ins=="*" or ins=="/"  or ins=="**" :
@@ -37,6 +37,7 @@ elif ins=="log":
     ans = math.log(A,10)
 elif ins=="x^2":
     ans = (A**2)
+    
 elif ins == "+":
     ans = (A+B)
 elif ins == "-":
