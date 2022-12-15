@@ -204,3 +204,7 @@ best
 behtarin
 for
 baraye
+tree
+derakht
+phone
+gushi

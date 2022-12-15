@@ -14,7 +14,6 @@ def read_from_file():
 
     f.close()
 
-
 def Menu():
     print("******* TRANSLATE *******")
     print("1 - Persian to English")
@@ -32,8 +31,8 @@ def English_to_persian():
             if user_word == word["en"]:
                 output = output + word["fa"] + " "
                 break
-    else:
-        output = output + user_word + " "
+        else:
+            output = output + user_word + " "
 
     print(output)
     out = gtts.gTTS(output,lang="ar",slow=False)
@@ -45,11 +44,11 @@ def persian_to_English():
     user_words = user_text.split(' ')
     for user_word in user_words:
         for word in words_bank:
-            if user_word == word['fa']:
-                output = output + word['en'] + ' '
+            if user_word == word["fa"]:
+                output = output + word["en"] +  " "
                 break
         else:
-            output = output + user_word + ' '
+            output = output + user_word + " "
 
     print(output)
     out = gtts.gTTS(output,lang="en",slow=False)
@@ -62,12 +61,14 @@ def add_new_word():
         user_new_fa_word = input("Enter what you want to add in Persian: ")
         words_bank.append(user_new_en_word)
         words_bank.append(user_new_fa_word)
-        
+        f = open("translate.txt","a")
+        f.write("\n" + user_new_en_word + "\n" + user_new_fa_word)
         
 read_from_file()
 while True:
     Menu()
     choice = int(input("Enter your choice -> "))
+    print("*************************")
     if choice == 1:
         persian_to_English()
     elif choice == 2:
@@ -76,4 +77,3 @@ while True:
         add_new_word()
     elif choice == 4:
         exit(0)
-
