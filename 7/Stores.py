@@ -1,3 +1,4 @@
+
 PRODUCTS = []
 ######## File ########
 def read_from_database():
@@ -20,7 +21,7 @@ def write_to_database():
         f.write(str(product["price"]))
         f.write(",")
         f.write(str(product["count"]))
-        f.write("\n")
+       # f.write("\n")
         
     f.close()
 
@@ -66,10 +67,10 @@ def edit():
         for product in PRODUCTS:
             if user_input_edit==product["code"] or user_input_edit==product["name"]:
                 print("The product you selected -> ")
-                print("code: " + product["code"])
-                print("name: " + product["name"])
-                print("price: " + product["price"])
-                print("count: " + product["count"])
+                print("code: " , product["code"])
+                print("name: " , product["name"])
+                print("price: " , product["price"])
+                print("count: " , product["count"])
                 check = input("Is it true?(y/n) ")
                 if check == "n":
                     ch = False
@@ -105,10 +106,10 @@ def remove():
         for product in PRODUCTS:
             if user_input_edit==product["code"] or user_input_edit==product["name"]:
                 print("The product you selected -> ")
-                print("code: " + product["code"])
-                print("name: " + product["name"])
-                print("price: " + product["price"])
-                print("count: " + product["count"])
+                print("code: " , product["code"])
+                print("name: " , product["name"])
+                print("price: " , product["price"])
+                print("count: " , product["count"])
                 check = input("Is it true?(y/n) ")
                 if check == "n":
                     ch = False
@@ -126,20 +127,20 @@ def search():
     user_input_search = input("Enter code or name of product: ")
     for product in PRODUCTS:
         if user_input_search==product["code"] or user_input_search==product["name"]:
-            print("code: " + product["code"])
-            print("name: " + product["name"])
-            print("price: " + product["price"])
-            print("count: " + product["count"])
+            print("code: " , product["code"])
+            print("name: " , product["name"])
+            print("price: " , product["price"])
+            print("count: " , product["count"])
 
 ######## Show list ########
 def show_list():
     i = 1
     for product in PRODUCTS:
         print(i ,"- ",end="")
-        print("code: " + product["code"])
-        print("name: " + product["name"])
-        print("price: " + product["price"])
-        print("count: " + product["count"])
+        print("code: " , product["code"])
+        print("name: " , product["name"])
+        print("price: " , product["price"])
+        print("count: " , product["count"])
         i+=1
 
 ######## Buy ########
@@ -155,10 +156,10 @@ def buy():
             if user_input_buy==product["code"] or user_input_buy==product["name"]:
                 checkE = True
                 print("The product you selected -> ")
-                print("code: " + product["code"])
-                print("name: " + product["name"])
-                print("price: " + product["price"])
-                print("count: " + product["count"],end="")
+                print("code: " , product["code"])
+                print("name: " , product["name"])
+                print("price: ", product["price"])
+                print("count: " , product["count"])
 
                 check = input("Is it true?(y/n) ")
                 if check == "n":
