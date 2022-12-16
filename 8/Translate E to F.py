@@ -2,15 +2,17 @@ import gtts
 
 def read_from_file():
     global words_bank
+    try:
+        f = open("translate.txt","r+")
+    except IOError:
+            print("Could not open file!")
+            exit(0)
 
-    f = open("translate.txt","r")
-    temp = f.read().split("\n")
 
     words_bank = []
     for i in range(0,len(temp),2):
         my_dict = {"en":temp[i],"fa":temp[i+1]}
         words_bank.append(my_dict)
-
 
     f.close()
 

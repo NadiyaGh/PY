@@ -17,16 +17,23 @@ def write_to_database():
         f.write(",")
         f.write(product["name"])
         f.write(",")
-        f.write(product["price"])
+        f.write(str(product["price"]))
         f.write(",")
-        f.write(product["count"])
+        f.write(str(product["count"]))
+        f.write("\n")
         
     f.close()
 
-def Factor(pro):
+def Factor(pro,i):
+    sum = 0
+    j = 1
     print("_____________ Factor _____________")
     for product in pro:
-        print(product["name"],"     ",product["price"])
+        print(j , "- " , product["name"],"     ",product["price"],"    ",product["count"])
+        sum += (product["count"] * product["price"])
+        j+=1
+    print("Sum = ",sum)
+    
 ######## Menu ########
 def show_menu():
     print("1 - Add")
@@ -142,41 +149,52 @@ def buy():
     #list of factor:
     pro = []
     while True:
+        checkE = False
         user_input_buy = input("Enter the product code or name: ")
         for product in PRODUCTS:
-                if user_input_buy==product["code"] or user_input_buy==product["name"]:
-                    print("The product you selected -> ")
-                    print("code: " + product["code"])
-                    print("name: " + product["name"])
-                    print("price: " + product["price"])
-                    print("count: " + product["count"])
-                    check = input("Is it true?(y/n) ")
-                    if check == "n":
-                        ch = False
-                        break
-                    else:
-                        ch = True
-                    while True:
-                        user_input_buy_num = input("Enter your desired number of ",product["name"]," : ")
-                        if user_input_buy_num > product["count"]:
-                            print("The supply is NOT enough!!\nThe available suppply list is: ",end=" ")
-                            print(product["count"])
-                            Ans = input("Do you want to continue??? (y/n) -> ")
-                            if Ans == 'Y' or Ans == 'y':
-                                continue
-                            else:
-                                return
+            if user_input_buy==product["code"] or user_input_buy==product["name"]:
+                checkE = True
+                print("The product you selected -> ")
+                print("code: " + product["code"])
+                print("name: " + product["name"])
+                print("price: " + product["price"])
+                print("count: " + product["count"],end="")
+
+                check = input("Is it true?(y/n) ")
+                if check == "n":
+                    ch = False
+                    break
+                else:
+                    ch = True
+                while True:
+                    user_input_buy_num = input("Enter your desired number of: ")
+                    if int(user_input_buy_num) > int(product["count"]):
+                        print("The supply is NOT enough!!\nThe available suppply list is: ",end=" ")
+                        print(product["count"])
+                        Ans = input("Do you want to continue??? (y/n) -> ")
+                        if Ans == 'Y' or Ans == 'y':
+                            continue
                         else:
-                            product["count"] -= user_input_buy_num
-                            PurchaseAmount += (user_input_buy_num * (product['price']))
-                            i+=1
-                            pro.append(product)
-                            Factor(pro,i)
-                            break
-        else:
+                            return
+                    else:
+                        user_input_buy_num = int(user_input_buy_num)
+                        product["count"] = int(product["count"]) - user_input_buy_num
+                        
+                        PurchaseAmount += (user_input_buy_num * int(product['price']))
+                        i+=1
+                        factor_dict = {"name":product["name"],"price":PurchaseAmount,"count":user_input_buy_num}
+                        str(product["count"])
+                        str(product["price"])
+                
+                        pro.append(factor_dict)
+                        break
+                
+        if checkE==False:
             print("your intended object code not found!!")
         check = input("Do you want to continue to buy?(y/n)")
         if check == 'n':
+            Factor(pro,i)
+           
             break
 
                     
