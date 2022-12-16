@@ -1,3 +1,4 @@
+import qrcode
 
 PRODUCTS = []
 ######## File ########
@@ -37,13 +38,14 @@ def Factor(pro,i):
     
 ######## Menu ########
 def show_menu():
-    print("1 - Add")
-    print("2 - Edit")
-    print("3 - Remove")
-    print("4 - Search")
-    print("5 - Show list")
+    print("1 - Add product")
+    print("2 - Edit product")
+    print("3 - Remove product")
+    print("4 - Search in StoreRoom")
+    print("5 - Show list of products")
     print("6 - Buy")
-    print("7 - Exit")
+    print("7 - save product with QRcode")
+    print("8 - Exit")
 
 ######## Add ########
 def add():
@@ -198,7 +200,13 @@ def buy():
            
             break
 
-                    
+###### QRcode #######
+def QR():
+    user_input_co = input("Enter name or code of product:  ")
+    for product in PRODUCTS:
+        if user_input_co==product["code"] or user_input_co==product["name"]:
+            em = qrcode.make(product)
+            em.save("product.png")        
 
 ######## Main ########
 print("--------------------------------")
@@ -222,5 +230,7 @@ while True:
     elif choice==6:
         buy()
     elif choice==7:
+        QR()
+    elif choice==8:
         write_to_database()
         exit(0)
