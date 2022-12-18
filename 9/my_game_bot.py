@@ -111,7 +111,6 @@ def Age(message):
         for item in Birth:
             EBirth.append(int(item))
         check_birthday = ((today.month, today.day) < (EBirth[1],EBirth[2]))
-        bot.send_message(message.chat.id,EBirth)
         year = today.year - EBirth[0]
         age = year - check_birthday
         bot.send_message(message.chat.id,age)
@@ -140,16 +139,20 @@ def send_voice(message):
 
 
 def QR(message):
-    qr = qrcode.make(message.text)
-    qr.save("D:\PY1\PY\9\yourQRcode.png")
-    qr = open("D:\PY1\PY\9\yourQRcode.png","rb")
-    bot.send_photo(message.chat.id, qr)
+    @bot.message_handler(func=lambda m:True)
+    def echo_all(message):
+        qr = qrcode.make(message.text)
+        qr.save("D:\PY1\PY\9\yourQRcode.png")
+        qr = open("D:\PY1\PY\9\yourQRcode.png","rb")
+        bot.send_photo(message.chat.id, qr)
 
 @bot.message_handler(commands=["qrcode"])
 def send_qrcode(message):
     bot.reply_to(message,"Enter whatever you want convert to QRcode 🔗")
     bot_state = "qrcode"
     QR(message)
+
+
 
 @bot.message_handler(func=lambda m:True)
 def echo_all(message):
@@ -159,8 +162,8 @@ def echo_all(message):
         bot.send_message(message.chat.id,"خداروشکر")
     elif message.text == "چه خبر؟":
         bot.send_message(message.chat.id,"سلامتییی")
-    else:
-        bot.send_message(message.chat.id,"I can't understand what you say..😥")
+    # else:
+    #     bot.send_message(message.chat.id,"I can't understand what you say..😥")
 
 # @bot.message_handler(func=lambda m:True)
 # def echo_all(message,bot_state):
