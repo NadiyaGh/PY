@@ -47,14 +47,16 @@ def Game(message):
 @bot.message_handler(commands=["game"])
 def send_game(message):
     bot.reply_to(message,"Number guessing game 🎮")
+    #global bot_state
     bot_state = "game"
+    echo_all(message,bot_state)
     Game(message)
 
 
 
 def Max(message):
     bot.send_message(message.chat.id,"Enter the numbers in this format: 3,5,9,16,90,8 ")
-    bot_state = "max"
+    
     @bot.message_handler(func=lambda m:True)
     def echo_all(message):
         MAX = message.text.split(",")
@@ -70,16 +72,16 @@ def Max(message):
 @bot.message_handler(commands=["max"])
 def send_max(message):
     bot.reply_to(message,"Find Max number 💡")
-    Max(message)
+    bot_state = "max"
+    echo_all(message,bot_state)
+    #Max(message)
 
 
 
 def ArgMax(message):
     bot.send_message(message.chat.id,"Enter the numbers in this format: 3,5,9,16,90,8 ")
-
     @bot.message_handler(func=lambda m:True)
-    def echo_all(message):
-        bot_state = "argmax"
+    def echo_all(message):        
         MAX = message.text.split(",")
         maxx = 0
         list_of_MAX = []
@@ -96,11 +98,12 @@ def ArgMax(message):
 @bot.message_handler(commands=["argmax"])
 def send_argmax(message):
     bot.reply_to(message,"It Tells you place of max number🏅")
-    ArgMax(message)
+    bot_state = "argmax"
+    echo_all(message,bot_state)
+    #ArgMax(message)
 
 
 def Age(message):
-    bot_state = "age"    
     today = date.today()
     EBirth = []
     bot.send_message(message.chat.id,"Enter your birthday: ")
@@ -118,11 +121,12 @@ def Age(message):
 @bot.message_handler(commands=["age"])
 def send_age(message):
     bot.reply_to(message,"I tell How old are you? 🎂")
-    Age(message)
+    bot_state = "age"
+    echo_all(message,bot_state)
+    #Age(message)
 
 
-def Voice(message):
-    bot_state = "voice"
+def Voice(message):    
     bot.send_message(message.chat.id,"type somethings in English: ")
     def echo_all(message):
         out = gtts.gTTS(message.text,lang="en",slow=False)
@@ -132,11 +136,12 @@ def Voice(message):
 @bot.message_handler(commands=["voice"])
 def send_voice(message):
     bot.reply_to(message,"I read what you type 🎤")
-    Voice(message)
+    bot_state = "voice"
+    echo_all(message,bot_state)
+    #Voice(message)
 
 
 def QR(message):
-    bot_state = "qrcode"
     qr = qrcode.make(message.text)
     qr.save("yourQRcode.png")
     bot.send_photo(message.chat.id, "yourQRcode.png")
@@ -144,7 +149,9 @@ def QR(message):
 @bot.message_handler(commands=["qrcode"])
 def send_qrcode(message):
     bot.reply_to(message,"Enter whatever you want convert to QRcode 🔗")
-    QR(message)
+    bot_state = "qrcode"
+    echo_all(message,bot_state)
+    #QR(message)
 
 @bot.message_handler(func=lambda m:True)
 def echo_all(message):
@@ -154,5 +161,22 @@ def echo_all(message):
         bot.send_message(message.chat.id,"خداروشکر")
     elif message.text == "چه خبر؟":
         bot.send_message(message.chat.id,"سلامتییی")
+    else:
+        bot.send_message(message.chat.id,"I can't understand what you say..😥")
+
+@bot.message_handler(func=lambda m:True)
+def echo_all(message,bot_state):
+    if bot_state == "qrcode":
+        QR(message)
+    elif bot_state == "game":
+        Game(message)
+    elif bot_state == "max":
+        Max(message)
+    elif bot_state == "ArgMax":
+        ArgMax(message)
+    elif bot_state == "voice":
+        Voice(message)
+    elif bot_state == "age":
+        Age()
 
 bot.infinity_polling()
