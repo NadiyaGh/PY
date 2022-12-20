@@ -21,7 +21,7 @@ my_keyboard.row(keygame)
 my_keyboard.row(keyvoice, keyqrcode,keyage)
 
 #bot.send_message(message.chat.id, "Choose one letter:", reply_markup=markup)
-bot = telebot.TeleBot("-",parse_mode=None)
+bot = telebot.TeleBot("5942789065:AAEP6qN15jDXSNPNoEE6mPioBg9EeGinmns",parse_mode=None)
 
 
 ################# START ################

@@ -1,7 +1,8 @@
 class Fraction:
-    def __init__(self,numerator,denominator):
+    def __init__(self,numerator,denominator,mark):
         self.Numerator = numerator
         self.Denominator = denominator
+        self.Mark = mark
         pass
     def F_Sum(self,num1,den1,num2,den2):
         ...
