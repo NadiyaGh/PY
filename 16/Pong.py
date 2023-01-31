@@ -9,7 +9,7 @@ class Ball(arcade.Sprite):
         self.radius = 15
         self.change_x = random.choice([-1,1])
         self.change_y = random.choice([-1,1])
-        self.speed = 2
+        self.speed = 3
         self.width = self.radius*2
         self.height = self.radius*2
     def move(self):
@@ -39,7 +39,7 @@ class Racket(arcade.Sprite):
             self.center_y += self.change_y*self.speed
             if self.center_y < 30:
                 self.center_y = 60
-            if self.center_y>game.height - 60:
+            if self.center_y > game.height - 60:
                 self.center_y = game.height - 60
             
             #self.center_y = ball.center_y

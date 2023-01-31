@@ -26,10 +26,11 @@ class Time:
         Se = ((self.Hour*3600)+(self.Minute*60)+(self.Seconds))
         return Se
 ####################
-    def Convert_seconds_to_time(self,seconds):
-        hour = int(seconds/3600)
+    @staticmethod
+    def Convert_seconds_to_time(seconds):
+        hour = seconds//3600
         seconds -= (hour*3600)
-        minute = int(seconds/60)
+        minute = seconds//60
         seconds -= (minute*60)
         return (Time(hour,minute,seconds))
 ####################
@@ -91,11 +92,11 @@ T_A2 = T2.Convert_time_to_seconds()
 print("Convert second time to seconds: ",T_A2)
 print("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-")
 print("Convert first seconds to time : ")
-T = T.Convert_seconds_to_time(T_A)
+T = Time.Convert_seconds_to_time(T_A)
 T = T.Check_Fix()
 T.Show_Time()
 print("Convert second seconds to time : ")
-T = T.Convert_seconds_to_time(T_A2)
+T = Time.Convert_seconds_to_time(T_A2)
 T = T.Check_Fix()
 T.Show_Time()
 print("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-")
