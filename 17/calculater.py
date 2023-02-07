@@ -118,6 +118,7 @@ def Sqrt():
     number = float(main_window.showtext.text())
     if (number < 0):
         result = "Error!"
+        main_window.showtext.setText(result)
     else:
         result = math. sqrt(number)
         main_window.showtext.setText("")
@@ -126,26 +127,7 @@ def Sqrt():
     
 ####################
 def Num(number):
-    if number=="1":
-        main_window.showtext.setText(main_window.showtext.text()+'1')
-    elif number=="2":
-        main_window.showtext.setText(main_window.showtext.text()+'2')
-    elif number=="3":
-        main_window.showtext.setText(main_window.showtext.text()+'3')
-    elif number=="4":
-        main_window.showtext.setText(main_window.showtext.text()+'4')
-    elif number=="5":
-        main_window.showtext.setText(main_window.showtext.text()+'5')
-    elif number=="6":
-        main_window.showtext.setText(main_window.showtext.text()+'6')
-    elif number=="7":
-        main_window.showtext.setText(main_window.showtext.text()+'7')
-    elif number=="8":
-        main_window.showtext.setText(main_window.showtext.text()+'8')
-    elif number=="9":
-        main_window.showtext.setText(main_window.showtext.text()+'9')
-    elif number=="0":
-        main_window.showtext.setText(main_window.showtext.text()+'0')
+    main_window.showtext.setText(main_window.showtext.text()+number)
     
 ####################
 def find_result():
